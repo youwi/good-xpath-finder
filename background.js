@@ -71,6 +71,15 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
   }
 });
 
+
+
+chrome.tabs.executeScript(tabId, {file: "jquery.js"}, function(){
+  chrome.tabs.executeScript(tabId, {code: "var scriptOptions = {param1:'value1',param2:'value2'};"}, function(){
+    chrome.tabs.executeScript(tabId, {file: "script.js"}, function(){
+      //all injected
+    });
+  });
+});
 /*
 // Create a parent item and two children.
 var parent = chrome.contextMenus.create({"title": "Test parent item"});
